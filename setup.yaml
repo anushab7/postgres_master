@@ -2,6 +2,9 @@ users:
   - name: springbootweb
     password: $POSTGRESQL_SPRINGBOOTWEB_PASSWORD
     role: superuser
+  - name: testdb
+    password: $POSTGRESQL_TESTDB_PASSWORD
+    role: SELECT,INSERT,UPDATE,DELETE
 databases:
   - name: springbootweb
     owner: springbootweb
@@ -12,6 +15,16 @@ databases:
       - name: schema1
         authorised_user: springbootweb
         search_path: true
+  - name: testdb
+    owner: testdb
+    tablespace:
+      - name: tb2
+        location: /appz/data/tb2
+    schemas:
+      - name: testschema
+        authorised_user: testdb
+        search_path: true
+    
 restore:
   - database: springbootweb
     source:
