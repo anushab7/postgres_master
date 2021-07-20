@@ -4,7 +4,7 @@ users:
     role: superuser
   - name: testdb
     password: $POSTGRESQL_TESTDB_PASSWORD
-    role: SELECT,INSERT,UPDATE,DELETE
+    role: createdb
 databases:
   - name: springbootweb
     owner: springbootweb
@@ -15,20 +15,10 @@ databases:
       - name: schema1
         authorised_user: springbootweb
         search_path: true
-  - name: testdb
-    owner: testdb
-    tablespace:
-      - name: tb2
-        location: /appz/data/tb2
-    schemas:
-      - name: testschema
-        authorised_user: testdb
-        search_path: true
-    
-restore:
+  restore:
   - database: springbootweb
     source:
       url: 'https://www.ecloudcontrol.com/wp-content/uploads/2021/06/accountsdb-springboot.sql_.zip'
     user: springbootweb
     password: $POSTGRESQL_SPRINGBOOTWEB_PASSWORD
-    token: 20210720-1715
+    token: 20210720-1843
